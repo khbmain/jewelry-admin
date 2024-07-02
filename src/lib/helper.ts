@@ -15,3 +15,11 @@ export function decodeJWT(token: string) {
     return {};
   }
 }
+
+export function toTugrik(value: number): string {
+  // Convert the integer to a string with commas as thousands separators
+  const formattedValue = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  // Append the Tugrik symbol
+  return `${formattedValue} ₮`;
+}

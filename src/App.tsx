@@ -17,13 +17,23 @@ import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
 import DefaultLayout from './layout/DefaultLayout';
 import { useUser } from './context/userContext';
+import { decodeJWT } from './lib/helper';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const { pathname } = useLocation();
-  const { user } = useUser();
+  const { user, setUser } = useUser();
 
   useEffect(() => {
+    try {
+      let token = localStorage.getItem('token');
+      let result = decodeJWT(token!);
+      console.log(result);
+
+      setUser({ email: result.email, id: result.user_id, name: result.name });
+    } catch (error) {
+      setUser(null);
+    }
     window.scrollTo(0, 0);
   }, [pathname]);
 
