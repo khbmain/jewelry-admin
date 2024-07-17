@@ -1,14 +1,20 @@
-import { useState } from 'react';
-import { product } from '../../types/product';
+import { useRef, useState } from 'react';
+import { productType } from '../../types/product';
+import { useOnClickOutside } from 'usehooks-ts';
+import SelectGroupTwo from '../Forms/SelectGroup/SelectGroupTwo';
 
 export default function ProductModal({
-  open = true,
+  open = false,
+  onClose = () => {},
+  onComplete = () => {},
 }: {
-  open?: boolean;
+  open?: boolean | productType;
   onClose?: Function;
+  onComplete?: Function;
 }) {
+  const ref = useRef(null);
   const [images, setImages] = useState<File[]>([]);
-  const [product, setProduct] = useState<product>({
+  const [product, setProduct] = useState<productType>({
     name: '',
     images: [],
     desc: '',
@@ -21,9 +27,22 @@ export default function ProductModal({
 
   function onFileAdded(e: any) {}
 
+  function onOutside() {
+    onClose();
+  }
+
+  useOnClickOutside(ref, onOutside);
+
   return (
-    <div className="h-screen w-screen bg-[#000000]/50 fixed top-0 left-0 z-9999 flex justify-center items-center backdrop-blur-[1px]">
-      <div className="rounded-sm border border-stroke w-[30vw] bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div
+      className={`h-screen w-screen bg-[#000000]/50 fixed top-0 left-0 z-9999 justify-center items-center backdrop-blur-[1px] ${
+        open ? 'flex' : 'hidden'
+      }`}
+    >
+      <div
+        ref={ref}
+        className="rounded-sm border border-stroke w-[30vw] bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
+      >
         <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
           <h3 className="font-medium text-black dark:text-white">
             Бараа нэмэх
@@ -53,7 +72,7 @@ export default function ProductModal({
           {/* description */}
           <div>
             <label className="mb-3 block text-black dark:text-white">
-              Барааны дэлгэрэнгүй тайлбар
+              Дэлгэрэнгүй тайлбар
             </label>
             <textarea
               rows={6}
@@ -68,8 +87,8 @@ export default function ProductModal({
               Барааны зураг
             </label>
             <div className="flex gap-3 overflow-x-auto pb-3 ">
-              {images.map((image, index) => (
-                <ImgBlobViewer key={image.name + index} image={image} />
+              {images.map((image) => (
+                <ImgBlobViewer key={image.name} image={image} />
               ))}
               <div className="h-[130px] relative aspect-[2.3/3] bg-[#a8a8a8] flex items-center">
                 <input
@@ -89,6 +108,12 @@ export default function ProductModal({
               </div>
             </div>
           </div>
+          {/* class */}
+          <SelectGroupTwo
+            options={['Ангилал 1', 'Ангилал 2']}
+            mainTitle="Ангилал"
+            title="Ангилал сонгоогүй"
+          />
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ export type Product = {
   profit: number;
 };
 
-export type product = {
+export type productType = {
   id?: string;
   images: string[];
   name: string;
