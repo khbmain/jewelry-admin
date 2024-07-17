@@ -131,7 +131,7 @@ function App() {
           path="/ui/buttons"
           element={
             <>
-              <PageTitle title="Buttons | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Jewelry үнэт эдлэлийн дэлгүүр" />
               <Buttons />
             </>
           }

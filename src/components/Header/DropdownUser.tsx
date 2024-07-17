@@ -6,7 +6,7 @@ import { useUser } from '../../context/userContext';
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { user } = useUser();
+  const { user, setUser } = useUser();
 
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
@@ -22,9 +22,9 @@ const DropdownUser = () => {
           <span className="block text-xs">{user?.name}</span>
         </span>
 
-        <span className="h-12 w-12 rounded-full">
+        {/* <span className="h-12 w-12 rounded-full">
           <img src={UserOne} alt="User" />
-        </span>
+        </span> */}
 
         <svg
           className="hidden fill-current sm:block"
@@ -121,7 +121,13 @@ const DropdownUser = () => {
               </Link>
             </li>
           </ul> */}
-          <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+          <button
+            className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+            onClick={() => {
+              setUser();
+              localStorage.removeItem('token');
+            }}
+          >
             <svg
               className="fill-current"
               width="22"

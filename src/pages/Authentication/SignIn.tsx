@@ -42,7 +42,7 @@ const SignIn: React.FC = () => {
   return (
     <>
       {/* <Breadcrumb pageName="Sign In" /> */}
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex h-screen items-center justify-center dark:bg-graydark">
         <div className=" rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
           <div className="flex flex-wrap items-center">
             <div className="hidden w-full xl:block xl:w-1/2">

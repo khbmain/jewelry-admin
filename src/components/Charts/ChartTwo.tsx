@@ -44,7 +44,7 @@ const options: ApexOptions = {
   },
 
   xaxis: {
-    categories: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+    categories: ['Да', 'Мя', 'Лха', 'Пү', 'Ба', 'Ха', 'Бү'],
   },
   legend: {
     position: 'top',
@@ -73,29 +73,29 @@ const ChartTwo: React.FC = () => {
   const [state, setState] = useState<ChartTwoState>({
     series: [
       {
-        name: 'Sales',
+        name: 'Зарагдсан',
         data: [44, 55, 41, 67, 22, 43, 65],
       },
       {
-        name: 'Revenue',
+        name: 'Ашиг',
         data: [13, 23, 20, 8, 13, 27, 15],
       },
     ],
   });
-  
+
   const handleReset = () => {
     setState((prevState) => ({
       ...prevState,
     }));
   };
-  handleReset;  
+  handleReset;
 
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
       <div className="mb-4 justify-between gap-4 sm:flex">
         <div>
           <h4 className="text-xl font-semibold text-black dark:text-white">
-            Profit this week
+            Орлого 7хон
           </h4>
         </div>
         <div>
@@ -105,8 +105,12 @@ const ChartTwo: React.FC = () => {
               id="#"
               className="relative z-20 inline-flex appearance-none bg-transparent py-1 pl-3 pr-8 text-sm font-medium outline-none"
             >
-              <option value="" className='dark:bg-boxdark'>This Week</option>
-              <option value="" className='dark:bg-boxdark'>Last Week</option>
+              <option value="" className="dark:bg-boxdark">
+                Энэ 7 хоног
+              </option>
+              <option value="" className="dark:bg-boxdark">
+                Өнгөрсөн 7 хоног
+              </option>
             </select>
             <span className="absolute top-1/2 right-3 z-10 -translate-y-1/2">
               <svg

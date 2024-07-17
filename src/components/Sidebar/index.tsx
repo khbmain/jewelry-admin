@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import SidebarLinkGroup from './SidebarLinkGroup';
-import Logo from '../../images/logo/logo.svg';
+import Logo from '../../images/logo/logo-icon.svg';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -65,7 +65,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
         <NavLink to="/">
-          <img src={Logo} alt="Logo" />
+          <div className="flex gap-4">
+            <img src={Logo} alt="Logo" />
+            <h1 className="text-2xl text-white font-bold">JewelryAdmin</h1>
+            {/* <img src={Logo} alt="Logo" /> */}
+          </div>
         </NavLink>
 
         <button
@@ -98,7 +102,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           {/* <!-- Menu Group --> */}
           <div>
             <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              MENU
+              Цэс
             </h3>
 
             <ul className="mb-6 flex flex-col gap-1.5">
@@ -401,7 +405,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               {/* <!-- Menu Item Tables --> */}
 
               {/* <!-- Menu Item Settings --> */}
-              <li>
+              {/* <li>
                 <NavLink
                   to="/settings"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
@@ -440,7 +444,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   </svg>
                   Settings
                 </NavLink>
-              </li>
+              </li> */}
               {/* <!-- Menu Item Settings --> */}
             </ul>
           </div>

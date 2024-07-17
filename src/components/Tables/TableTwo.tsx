@@ -64,7 +64,7 @@ const TableTwo = () => {
         />
       }
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        <div className="flex justify-between py-6 px-4 md:px-6 xl:px-7.5">
+        <div className="flex items-center justify-between py-6 px-4 md:px-6 xl:px-7.5">
           <h4 className=" text-xl font-semibold text-black dark:text-white">
             Бараанууд
           </h4>
@@ -73,7 +73,7 @@ const TableTwo = () => {
             onClick={() => {
               setModal(true);
             }}
-            className="inline-flex items-center justify-center rounded-full bg-meta-3 py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+            className="inline-flex items-center justify-center rounded-full bg-meta-3 py-2 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
           >
             Бараа нэмэх +
           </button>
@@ -114,7 +114,7 @@ const TableTwo = () => {
             </div>
             <div className="col-span-2 hidden items-center sm:flex">
               <p className="text-sm text-black dark:text-white">
-                {product.category}
+                {product.category?.join(', ').replaceAll('_', ' ')}
               </p>
             </div>
             <div className="col-span-1 flex items-center">
