@@ -12,13 +12,13 @@ export type productType = {
   images: string[];
   name: string;
   desc?: string;
-  price: number;
-  category?: string[];
-  tag?: string[];
-  insertedAt?: string;
-  updatedAt?: string;
-  total: number;
-  suggests?: string[];
+  price: number; // yes
+  category?: string[]; // half
+  tag?: string[]; // no
+  insertedAt?: string; // yes
+  updatedAt?: string; // yes
+  total: number; // no
+  suggests?: string[]; // ?
 };
 
 export type orders = {

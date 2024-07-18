@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ClickOutside from '../ClickOutside';
-import UserOne from '../../images/user/user-01.png';
 import { useUser } from '../../context/userContext';
 
 const DropdownUser = () => {
@@ -124,7 +123,7 @@ const DropdownUser = () => {
           <button
             className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
             onClick={() => {
-              setUser();
+              setUser(null);
               localStorage.removeItem('token');
             }}
           >

@@ -1,7 +1,9 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { productType } from '../../types/product';
 import { useOnClickOutside } from 'usehooks-ts';
 import SelectGroupTwo from '../Forms/SelectGroup/SelectGroupTwo';
+import { uploadFiles } from '../../helper';
+import MultiSelect from '../Forms/MultiSelect';
 
 export default function ProductModal({
   open = false,
@@ -14,6 +16,7 @@ export default function ProductModal({
 }) {
   const ref = useRef(null);
   const [images, setImages] = useState<File[]>([]);
+  const [progresses, setProgresses] = useState<any>([]);
   const [product, setProduct] = useState<productType>({
     name: '',
     images: [],
@@ -32,6 +35,9 @@ export default function ProductModal({
   }
 
   useOnClickOutside(ref, onOutside);
+  useEffect(() => {
+    console.log(progresses);
+  }, [progresses]);
 
   return (
     <div
@@ -41,7 +47,7 @@ export default function ProductModal({
     >
       <div
         ref={ref}
-        className="rounded-sm border border-stroke w-[30vw] bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
+        className="max-h-[60vh] overflow-auto rounded-sm border border-stroke w-[30vw] bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
       >
         <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
           <h3 className="font-medium text-black dark:text-white">
@@ -58,16 +64,14 @@ export default function ProductModal({
             />
           </div>
 
-          {/* <div>
-            <label className="mb-3 block text-black dark:text-white">
-              Active Input
-            </label>
+          <div>
+            <label className="mb-3 block text-black dark:text-white">Үнэ</label>
             <input
-              type="text"
-              placeholder="Active Input"
-              className="w-full rounded-lg border-[1.5px] border-primary bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input dark:text-white"
+              type="number"
+              placeholder="Барааны үнэ энд оруулна уу ( ₮ )"
+              className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
             />
-          </div> */}
+          </div>
 
           {/* description */}
           <div>
@@ -109,11 +113,53 @@ export default function ProductModal({
             </div>
           </div>
           {/* class */}
-          <SelectGroupTwo
-            options={['Ангилал 1', 'Ангилал 2']}
-            mainTitle="Ангилал"
-            title="Ангилал сонгоогүй"
-          />
+          <MultiSelect id="categories" />
+          <div>
+            <label className="mb-3 block text-black dark:text-white">
+              Барааны тоо хэмжээ
+            </label>
+            <input
+              type="number"
+              placeholder="Уг бараанаас хэд байгааг оруулна уу..."
+              className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+            />
+          </div>
+
+          <div className="flex gap-4 justify-end">
+            <button
+              onClick={() => {
+                setProduct({
+                  name: '',
+                  images: [],
+                  desc: '',
+                  price: 0,
+                  category: [],
+                  tag: [],
+                  total: 0,
+                  suggests: [],
+                });
+                onClose();
+              }}
+              className="inline-flex items-center justify-center rounded-md bg-slate-500 py-2 px-2 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+            >
+              Болих
+            </button>
+            <button
+              onClick={() => {
+                uploadFiles(
+                  images,
+                  (urls: any) => {
+                    console.log(urls);
+                  },
+                  (progresses: any[]) =>
+                    console.log(progresses.map((item) => item.progress)),
+                );
+              }}
+              className="inline-flex items-center justify-center rounded-md bg-meta-3 py-2 px-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+            >
+              Нэмэх
+            </button>
+          </div>
         </div>
       </div>
     </div>
