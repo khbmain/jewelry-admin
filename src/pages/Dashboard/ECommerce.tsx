@@ -7,6 +7,7 @@ import ChatCard from '../../components/Chat/ChatCard';
 import MapOne from '../../components/Maps/MapOne';
 import TableOne from '../../components/Tables/TableOne';
 import TableTwo from '../../components/Tables/TableTwo';
+import { toTugrik } from '../../lib/helper';
 
 const ECommerce: React.FC = () => {
   return (
@@ -38,7 +39,7 @@ const ECommerce: React.FC = () => {
         </CardDataStats>
         <CardDataStats
           title="Нийт зарагдсан"
-          total="$45,2K"
+          total={toTugrik(35245000)}
           rate="4.35%"
           levelUp
         >

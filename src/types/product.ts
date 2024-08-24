@@ -13,25 +13,25 @@ export type productType = {
   name: string;
   desc?: string;
   price: number; // yes
-  category?: string[]; // half
+  category?: string[]; // yes
   tag?: string[]; // no
   insertedAt?: string; // yes
   updatedAt?: string; // yes
-  total: number; // no
+  total: number; // yes
   suggests?: string[]; // ?
 };
 
-export type orders = {
+export type ordersType = {
   id: string;
   adderss: string;
   phone: string;
-  orders: order[];
+  orders: orderType[];
   insertedAt: string;
   paymented: boolean;
   delivery: boolean;
 };
 
-export type order = {
-  product: product;
+export type orderType = {
+  product: productType;
   count: number;
 };

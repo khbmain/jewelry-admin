@@ -14,7 +14,7 @@ interface DropdownProps {
 }
 
 const MultiSelect: React.FC<DropdownProps> = ({
-  id,
+  id = '',
   title = 'Ангилалууд',
   optionss = [
     {
